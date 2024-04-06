@@ -6,6 +6,8 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "lint": "eslint .",
+    "lint-staged": "lint-staged",
+    "tsc": "tsc -p ./tsconfig.json --noEmit",
     "start": "yarn clean:watchman; react-native start --reset-cache",
     "test": "jest",
     "clean:watchman": "watchman watch-del-all",
@@ -14,7 +16,8 @@
     "install:all": "yarn install; yarn install:pods",
     "release:apk": "cd android; ./gradlew :app:assembleRelease",
     "debug:apk": "cd android; ./gradlew :app:assembleDebug",
-    "release:aab": "cd android; ./gradlew :app:bundleRelease"
+    "release:aab": "cd android; ./gradlew :app:bundleRelease",
+    "prepare": "husky"
   },
   "dependencies": {
     "react": "18.2.0",
@@ -33,7 +36,9 @@
     "@types/react-test-renderer": "18.0.0",
     "babel-jest": "29.6.3",
     "eslint": "8.19.0",
+    "husky": "9.0.11",
     "jest": "29.6.3",
+    "lint-staged": "^15.2.2",
     "prettier": "2.8.8",
     "react-test-renderer": "18.2.0",
     "typescript": "5.0.4"
