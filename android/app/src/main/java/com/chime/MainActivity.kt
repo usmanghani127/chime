@@ -1,5 +1,6 @@
 package com.chime
 
+import android.os.Bundle
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.fabricEnabled
@@ -15,6 +16,10 @@ class MainActivity : ReactActivity() {
 
   init {
     SplashScreen.show(this, true);
+  }
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(null)
   }
 
   override fun getMainComponentName(): String = "Chime"
