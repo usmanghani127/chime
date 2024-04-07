@@ -18,10 +18,4 @@ export const english: TranslationKeys = {
   home: {
     success: 'Success',
   },
-  dummy: {
-    signInScreenText: 'Hello World. This is Sign In Screen',
-    signInScreenButton: 'Navigate to Home Screen',
-    homeScreenText: 'Hello World. This is Home Screen',
-    submitButton: 'Submit',
-  },
 };

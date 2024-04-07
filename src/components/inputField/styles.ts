@@ -4,10 +4,11 @@ import {Colors} from '../../common/theme/colors.ts';
 export default StyleSheet.create({
   fieldWrapper: {
     marginHorizontal: 50,
-    marginVertical: 25,
+    marginVertical: 15,
+    alignSelf: 'stretch',
   },
   field: {
-    backgroundColor: 'white',
+    backgroundColor: Colors.white,
   },
   error: {
     color: Colors.red,

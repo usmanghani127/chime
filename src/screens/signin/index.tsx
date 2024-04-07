@@ -1,22 +1,26 @@
 import React, {useState} from 'react';
-import {Keyboard, SafeAreaView, Text} from 'react-native';
-import {RouteKeys} from '../../navigation/routes';
-import {StackScreenProps} from '../../navigation/types';
+import {
+  Alert,
+  Keyboard,
+  KeyboardAvoidingView,
+  Pressable,
+  SafeAreaView,
+} from 'react-native';
 import Translations from '../../localization';
-import {InputField, VectorIcon} from '../../components';
-import {Button, TextInput} from 'react-native-paper';
+import {InputField} from '../../components';
+import {Button, Text, TextInput} from 'react-native-paper';
 import ChimeLogo from '../../assets/images/chime_logo.svg';
 import styles from './styles.ts';
 import {useForm} from 'react-hook-form';
 import {InputFieldFormKeys} from './types.ts';
 import {regex} from '../../common/regex.ts';
+import {Colors} from '../../common/theme/colors.ts';
 
-export const SignInScreen = (props: StackScreenProps<RouteKeys.SIGN_IN>) => {
-  const {navigation} = props;
+export const SignInScreen = () => {
   const {
     handleSubmit,
     control,
-    formState: {errors},
+    formState: {errors, isValid},
     setFocus,
   } = useForm<InputFieldFormKeys>({
     mode: 'onSubmit',
@@ -30,53 +34,62 @@ export const SignInScreen = (props: StackScreenProps<RouteKeys.SIGN_IN>) => {
   };
 
   const submit = handleSubmit(onSubmit);
+
   return (
     <SafeAreaView style={styles.background}>
-      <Text>{Translations.dummy.signInScreenText}</Text>
-      <VectorIcon
-        name={'face-man-profile'}
-        type={'MaterialCommunityIcons'}
-        size={40}
-      />
-      <ChimeLogo width={200} height={200} />
-      <InputField
-        name={'email'}
-        control={control}
-        errors={errors}
-        required={true}
-        pattern={regex.email}
-        requiredMessage={Translations.signIn.emailRequired}
-        errorMessage={Translations.signIn.emailInvalid}
-        placeholder={Translations.signIn.emailPlaceholder}
-        onSubmitEditing={() => setFocus('password')}
-        returnKeyType={'next'}
-      />
-      <InputField
-        name={'password'}
-        control={control}
-        errors={errors}
-        required={true}
-        requiredMessage={Translations.signIn.passwordRequired}
-        placeholder={Translations.signIn.passwordPlaceholder}
-        onSubmitEditing={submit}
-        returnKeyType={'done'}
-        secureTextEntry={secureTextInput}
-        right={
-          <TextInput.Icon
-            icon={'eye'}
-            onPress={() => setSecureTextInput(!secureTextInput)}
-          />
-        }
-      />
-      <Button
-        onPress={() => navigation.navigate(RouteKeys.HOME)}
-        icon={'home'}
-        mode={'contained'}>
-        {Translations.dummy.signInScreenButton}
-      </Button>
-      <Button onPress={submit} mode={'outlined'}>
-        {Translations.dummy.submitButton}
-      </Button>
+      <KeyboardAvoidingView
+        contentContainerStyle={styles.keyboardAvoidingView}
+        behavior={'position'}>
+        <ChimeLogo width={150} height={150} style={styles.chimeLogo} />
+        <InputField
+          name={'email'}
+          control={control}
+          errors={errors}
+          required={true}
+          pattern={regex.email}
+          requiredMessage={Translations.signIn.emailRequired}
+          errorMessage={Translations.signIn.emailInvalid}
+          placeholder={Translations.signIn.emailPlaceholder}
+          onSubmitEditing={() => setFocus('password')}
+          returnKeyType={'next'}
+        />
+        <InputField
+          name={'password'}
+          control={control}
+          errors={errors}
+          required={true}
+          requiredMessage={Translations.signIn.passwordRequired}
+          placeholder={Translations.signIn.passwordPlaceholder}
+          onSubmitEditing={submit}
+          returnKeyType={'done'}
+          secureTextEntry={secureTextInput}
+          right={
+            <TextInput.Icon
+              icon={'eye'}
+              onPress={() => setSecureTextInput(!secureTextInput)}
+            />
+          }
+        />
+        <Pressable
+          style={styles.needHelp}
+          onPress={() => Alert.alert('Hang On', 'Help is coming!')}>
+          <Text style={styles.needHelpText}>
+            {Translations.signIn.helpButton}
+          </Text>
+        </Pressable>
+        <Text style={styles.smsAgreement}>
+          {Translations.signIn.smsAgreement}
+        </Text>
+        <Button
+          onPress={submit}
+          mode={'contained'}
+          buttonColor={Colors.primary}
+          textColor={Colors.black}
+          disabled={!isValid}
+          style={styles.signInButton}>
+          {Translations.signIn.signInButton}
+        </Button>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };

@@ -4,7 +4,6 @@ import {Controller} from 'react-hook-form';
 import {Text, TextInput} from 'react-native-paper';
 import styles from './styles.ts';
 import {Colors} from '../../common/theme/colors.ts';
-import {When} from 'react-if';
 import {View} from 'react-native';
 
 export const InputField = (props: InputFieldType) => {
@@ -39,11 +38,9 @@ export const InputField = (props: InputFieldType) => {
             error={!!errors[name]}
             {...rest}
           />
-          <When condition={!!errors[name]}>
-            <Text variant="labelSmall" style={styles.error}>
-              {errors[name]?.message}
-            </Text>
-          </When>
+          <Text variant="labelSmall" style={styles.error}>
+            {errors[name]?.message}
+          </Text>
         </View>
       )}
       rules={{
