@@ -5,6 +5,7 @@ import {StackScreenProps} from '../../navigation/types';
 import Translations from '../../localization';
 import {VectorIcon} from '../../components';
 import {Button, TextInput} from 'react-native-paper';
+import ChimeLogo from '../../assets/images/chime_logo.svg';
 
 export const SignInScreen = (props: StackScreenProps<RouteKeys.SIGN_IN>) => {
   const {navigation} = props;
@@ -16,6 +17,7 @@ export const SignInScreen = (props: StackScreenProps<RouteKeys.SIGN_IN>) => {
         type={'MaterialCommunityIcons'}
         size={40}
       />
+      <ChimeLogo width={200} height={200} />
       <TextInput
         mode="outlined"
         label="Outlined input"
