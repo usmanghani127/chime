@@ -1,17 +1,20 @@
 import React from 'react';
 import {Button, SafeAreaView, Text} from 'react-native';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {RouteKeys} from '../../navigation/routes.ts';
-import {StackNavigatorProps} from '../../navigation/types.ts';
+import {RouteKeys} from '../../navigation/routes';
+import {StackScreenProps} from '../../navigation/types';
 import Translations from '../../localization';
+import {VectorIcon} from '../../components';
 
-export const SignInScreen = (
-  props: NativeStackScreenProps<StackNavigatorProps, RouteKeys.SIGN_IN>,
-) => {
+export const SignInScreen = (props: StackScreenProps<RouteKeys.SIGN_IN>) => {
   const {navigation} = props;
   return (
     <SafeAreaView>
       <Text>{Translations.dummy.signInScreenText}</Text>
+      <VectorIcon
+        name={'face-man-profile'}
+        type={'MaterialCommunityIcons'}
+        size={40}
+      />
       <Button
         title={Translations.dummy.signInScreenButton}
         onPress={() => navigation.navigate(RouteKeys.HOME)}
