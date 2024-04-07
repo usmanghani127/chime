@@ -3,7 +3,10 @@ import {TranslationKeys} from './types';
 export const english: TranslationKeys = {
   signIn: {
     emailPlaceholder: 'Email',
+    emailInvalid: 'Email is invalid',
+    emailRequired: 'Email is required',
     passwordPlaceholder: 'Password',
+    passwordRequired: 'Password is required',
     helpButton: 'Need help?',
     smsAgreement:
       'By clicking "Log In" you agree to receive SMS text message from Chime to verify your identity',
@@ -19,5 +22,6 @@ export const english: TranslationKeys = {
     signInScreenText: 'Hello World. This is Sign In Screen',
     signInScreenButton: 'Navigate to Home Screen',
     homeScreenText: 'Hello World. This is Home Screen',
+    submitButton: 'Submit',
   },
 };

@@ -1,6 +1,9 @@
 export type SignInTranslationKeys = Record<
   | 'emailPlaceholder'
+  | 'emailRequired'
+  | 'emailInvalid'
   | 'passwordPlaceholder'
+  | 'passwordRequired'
   | 'helpButton'
   | 'smsAgreement'
   | 'signInButton'
@@ -9,3 +12,8 @@ export type SignInTranslationKeys = Record<
   | 'errorButton',
   string
 >;
+
+export type InputFieldFormKeys = {
+  email: string;
+  password: string;
+};

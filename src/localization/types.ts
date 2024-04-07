@@ -2,7 +2,7 @@ import {SignInTranslationKeys} from '../screens/signin/types.ts';
 import {HomeTranslationKeys} from '../screens/home/types.ts';
 
 type DummyTranslationKeys = Record<
-  'homeScreenText' | 'signInScreenText' | 'signInScreenButton',
+  'homeScreenText' | 'signInScreenText' | 'signInScreenButton' | 'submitButton',
   string
 >;
 
