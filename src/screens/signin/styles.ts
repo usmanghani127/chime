@@ -6,7 +6,7 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.white,
   },
-  keyboardAvoidingView: {
+  wrapper: {
     alignItems: 'center',
   },
   chimeLogo: {},

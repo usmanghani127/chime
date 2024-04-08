@@ -1,11 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {
-  Alert,
-  Keyboard,
-  KeyboardAvoidingView,
-  Pressable,
-  SafeAreaView,
-} from 'react-native';
+import {Alert, Keyboard, Pressable, SafeAreaView} from 'react-native';
 import Translations from '../../localization';
 import {ErrorState, InputField, LoadingState} from '../../components';
 import {Button, Text, TextInput} from 'react-native-paper';
@@ -18,6 +12,7 @@ import {Colors} from '../../common/theme/colors.ts';
 import {useSignInMutation} from '../../services/api';
 import {StackScreenProps} from '../../navigation/types.ts';
 import {RouteKeys} from '../../navigation/routes.ts';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 export const SignInScreen = (props: StackScreenProps<RouteKeys.SIGN_IN>) => {
   const {navigation} = props;
@@ -78,9 +73,9 @@ export const SignInScreen = (props: StackScreenProps<RouteKeys.SIGN_IN>) => {
 
   return (
     <SafeAreaView style={styles.background}>
-      <KeyboardAvoidingView
-        contentContainerStyle={styles.keyboardAvoidingView}
-        behavior={'position'}>
+      <KeyboardAwareScrollView
+        contentContainerStyle={styles.wrapper}
+        showsVerticalScrollIndicator={false}>
         <ChimeLogo width={150} height={150} style={styles.chimeLogo} />
         <InputField
           name={'email'}
@@ -130,7 +125,7 @@ export const SignInScreen = (props: StackScreenProps<RouteKeys.SIGN_IN>) => {
           style={styles.signInButton}>
           {Translations.signIn.signInButton}
         </Button>
-      </KeyboardAvoidingView>
+      </KeyboardAwareScrollView>
       <LoadingState visible={isLoading} />
       <ErrorState
         visible={errorMessage.length > 0}
