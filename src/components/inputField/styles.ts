@@ -10,7 +10,4 @@ export default StyleSheet.create({
   field: {
     backgroundColor: Colors.white,
   },
-  error: {
-    color: Colors.red,
-  },
 });

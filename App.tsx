@@ -10,6 +10,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import {StackNavigator} from './src/navigation/stackNavigator.tsx';
 import SplashScreen from 'react-native-splash-screen';
 import {PaperProvider} from 'react-native-paper';
+import {ApiProvider} from '@reduxjs/toolkit/query/react';
+import {api} from './src/services/api';
 
 function App(): React.JSX.Element {
   useEffect(() => {
@@ -18,9 +20,11 @@ function App(): React.JSX.Element {
 
   return (
     <NavigationContainer>
-      <PaperProvider>
-        <StackNavigator />
-      </PaperProvider>
+      <ApiProvider api={api}>
+        <PaperProvider>
+          <StackNavigator />
+        </PaperProvider>
+      </ApiProvider>
     </NavigationContainer>
   );
 }

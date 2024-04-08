@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Alert,
   Keyboard,
@@ -15,8 +15,12 @@ import {useForm} from 'react-hook-form';
 import {InputFieldFormKeys} from './types.ts';
 import {regex} from '../../common/regex.ts';
 import {Colors} from '../../common/theme/colors.ts';
+import {useSignInMutation} from '../../services/api';
+import {StackScreenProps} from '../../navigation/types.ts';
+import {RouteKeys} from '../../navigation/routes.ts';
 
-export const SignInScreen = () => {
+export const SignInScreen = (props: StackScreenProps<RouteKeys.SIGN_IN>) => {
+  const {navigation} = props;
   const {
     handleSubmit,
     control,
@@ -25,15 +29,44 @@ export const SignInScreen = () => {
   } = useForm<InputFieldFormKeys>({
     mode: 'onSubmit',
     reValidateMode: 'onSubmit',
+    defaultValues: {email: 'atuny0@sohu.com', password: '9uQFF1Lh'},
   });
   const [secureTextInput, setSecureTextInput] = useState(true);
+  const [signInApiCall, {data, error, status}] = useSignInMutation();
 
   const onSubmit = (data: InputFieldFormKeys) => {
-    console.log({data});
     Keyboard.dismiss();
+    signInApiCall(data)
+      .then(() => {})
+      .catch(apiError => console.log({apiError}));
   };
 
   const submit = handleSubmit(onSubmit);
+
+  useEffect(() => {
+    switch (status) {
+      case 'pending':
+        console.log('API call in progress');
+        break;
+      case 'fulfilled':
+        console.log('API call succeeded', data);
+        navigation.navigate(RouteKeys.HOME);
+        break;
+      case 'rejected':
+        console.log('API call failed');
+        // @ts-ignore
+        const errorStatus = error?.status;
+        // @ts-ignore
+        const errorMessage = error?.error;
+        if (errorStatus === 400) {
+          console.log('Invalid Credentials');
+        } else {
+          console.log('Some thing went wrong ', errorMessage);
+          Alert.alert('Error', errorMessage);
+        }
+        break;
+    }
+  }, [data, error, status]);
 
   return (
     <SafeAreaView style={styles.background}>

@@ -1,7 +1,7 @@
 import React from 'react';
 import {InputFieldType} from './types.ts';
 import {Controller} from 'react-hook-form';
-import {Text, TextInput} from 'react-native-paper';
+import {HelperText, TextInput} from 'react-native-paper';
 import styles from './styles.ts';
 import {Colors} from '../../common/theme/colors.ts';
 import {View} from 'react-native';
@@ -38,9 +38,9 @@ export const InputField = (props: InputFieldType) => {
             error={!!errors[name]}
             {...rest}
           />
-          <Text variant="labelSmall" style={styles.error}>
+          <HelperText type="error" visible={!!errors[name]}>
             {errors[name]?.message}
-          </Text>
+          </HelperText>
         </View>
       )}
       rules={{
