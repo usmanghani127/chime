@@ -7,7 +7,7 @@ import {
   SafeAreaView,
 } from 'react-native';
 import Translations from '../../localization';
-import {InputField} from '../../components';
+import {ErrorState, InputField, LoadingState} from '../../components';
 import {Button, Text, TextInput} from 'react-native-paper';
 import ChimeLogo from '../../assets/images/chime_logo.svg';
 import styles from './styles.ts';
@@ -32,16 +32,21 @@ export const SignInScreen = (props: StackScreenProps<RouteKeys.SIGN_IN>) => {
     defaultValues: {email: 'atuny0@sohu.com', password: '9uQFF1Lh'},
   });
   const [secureTextInput, setSecureTextInput] = useState(true);
-  const [signInApiCall, {data, error, status}] = useSignInMutation();
+  const [errorMessage, setErrorMessage] = useState('');
+  const [signInApiCall, {data, error, isLoading, status}] = useSignInMutation();
 
-  const onSubmit = (data: InputFieldFormKeys) => {
+  const onSubmit = (inputData: InputFieldFormKeys) => {
     Keyboard.dismiss();
-    signInApiCall(data)
+    signInApiCall(inputData)
       .then(() => {})
       .catch(apiError => console.log({apiError}));
   };
 
   const submit = handleSubmit(onSubmit);
+
+  // A better approach would be to handle this api response in services/api file,
+  // and store the required data in redux, so that it is available to every screen.
+  // But due to time constraint, I am handling the data here.
 
   useEffect(() => {
     switch (status) {
@@ -57,15 +62,18 @@ export const SignInScreen = (props: StackScreenProps<RouteKeys.SIGN_IN>) => {
         // @ts-ignore
         const errorStatus = error?.status;
         // @ts-ignore
-        const errorMessage = error?.error;
+        let _errorMessage = error?.error;
         if (errorStatus === 400) {
           console.log('Invalid Credentials');
+          // @ts-ignore
+          _errorMessage = Translations.signIn.errorMessage;
         } else {
           console.log('Some thing went wrong ', errorMessage);
-          Alert.alert('Error', errorMessage);
         }
+        setErrorMessage(_errorMessage);
         break;
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, error, status]);
 
   return (
@@ -123,6 +131,14 @@ export const SignInScreen = (props: StackScreenProps<RouteKeys.SIGN_IN>) => {
           {Translations.signIn.signInButton}
         </Button>
       </KeyboardAvoidingView>
+      <LoadingState visible={isLoading} />
+      <ErrorState
+        visible={errorMessage.length > 0}
+        title={Translations.signIn.errorTitle}
+        message={errorMessage}
+        actionButtonText={Translations.signIn.errorButton}
+        actionButtonOnPress={() => setErrorMessage('')}
+      />
     </SafeAreaView>
   );
 };

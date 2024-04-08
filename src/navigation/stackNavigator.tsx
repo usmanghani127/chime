@@ -3,6 +3,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {RouteKeys} from './routes.ts';
 import {HomeScreen, SignInScreen} from '../screens';
 import {StackNavigatorProps} from './types.ts';
+import {Colors} from '../common/theme/colors.ts';
 
 const Stack = createNativeStackNavigator<StackNavigatorProps>();
 
@@ -11,8 +12,24 @@ export const StackNavigator = () => {
     <Stack.Navigator
       initialRouteName={RouteKeys.SIGN_IN}
       screenOptions={{headerShown: false}}>
-      <Stack.Screen name={RouteKeys.HOME} component={HomeScreen} />
-      <Stack.Screen name={RouteKeys.SIGN_IN} component={SignInScreen} />
+      <Stack.Screen
+        name={RouteKeys.HOME}
+        component={HomeScreen}
+        options={{
+          statusBarColor: Colors.primary,
+          statusBarStyle: 'light',
+          navigationBarColor: Colors.primary,
+        }}
+      />
+      <Stack.Screen
+        name={RouteKeys.SIGN_IN}
+        component={SignInScreen}
+        options={{
+          statusBarColor: Colors.white,
+          statusBarStyle: 'dark',
+          navigationBarColor: Colors.white,
+        }}
+      />
     </Stack.Navigator>
   );
 };

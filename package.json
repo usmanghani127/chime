@@ -7,6 +7,7 @@
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "lint-staged": "lint-staged",
+    "prettier": "prettier --check .",
     "tsc": "tsc -p ./tsconfig.json --noEmit",
     "start": "yarn clean:watchman; react-native start --reset-cache",
     "test": "jest",
