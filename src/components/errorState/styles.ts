@@ -18,9 +18,9 @@ export default StyleSheet.create({
     color: Colors.black,
     fontWeight: 'bold',
     fontSize: 20,
-    margin: 20,
   },
   message: {
     color: Colors.grey,
+    marginTop: 20,
   },
 });
