@@ -93,3 +93,21 @@ yarn detox:build:ios
 ```bash
 yarn detox:test:ios
 ```
+
+### For Android
+
+### Step 1: Setup enviroment variable
+Detox relies on `ANDROID_SDK_ROOT` environment variable, which point to the Android SDK path.
+
+
+### Step 2: Build the app
+
+```bash
+yarn detox:build:ios
+```
+
+### Step 3: Run the test cases
+
+```bash
+yarn detox:test:ios
+```
