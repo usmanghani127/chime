@@ -9,8 +9,11 @@ This project was created using the following version of the development tools:
 - Ruby 3.2.2
 - Xcode 15.1
 - JDK 17 [OpenJDK distribution Azul Zulu](https://www.azul.com/downloads/#)
-
 - Android Studio Hedgehog | 2023.1.1 Patch 1
+
+## Screen recording
+
+[Android and iOS screen recording](https://drive.google.com/file/d/1ApGLnRy6P1RCYKJHZO0lHQ4MHtmoT4gM/view?usp=share_link)
 
 ## Running App
 ### Step 1: Installing dependency packages
@@ -32,7 +35,7 @@ To start Metro, run the following command from the _root_ of your React Native p
 yarn start
 ```
 
-### Step 3: Start your Application
+### Step 3: Start the Application
 
 Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
 
