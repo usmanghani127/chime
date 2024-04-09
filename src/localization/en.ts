@@ -9,7 +9,7 @@ export const english: TranslationKeys = {
     passwordRequired: 'Password is required',
     helpButton: 'Need help?',
     smsAgreement:
-      'By clicking "Log In" you agree to receive SMS text message from Chime to verify your identity',
+      'By clicking "Log In" you agree to receive SMS text message from chime to verify your identity',
     signInButton: 'Log In',
     errorTitle: 'Yikes!',
     errorButton: 'Try Again',

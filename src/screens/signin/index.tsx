@@ -72,12 +72,21 @@ export const SignInScreen = (props: StackScreenProps<RouteKeys.SIGN_IN>) => {
   }, [data, error, status]);
 
   return (
-    <SafeAreaView style={styles.background}>
+    <SafeAreaView
+      style={styles.background}
+      testID={`${RouteKeys.SIGN_IN}: background`}>
       <KeyboardAwareScrollView
+        testID={`${RouteKeys.SIGN_IN}: wrapper`}
         contentContainerStyle={styles.wrapper}
         showsVerticalScrollIndicator={false}>
-        <ChimeLogo width={150} height={150} style={styles.chimeLogo} />
+        <ChimeLogo
+          testID={`${RouteKeys.SIGN_IN}: chimeLogo`}
+          width={150}
+          height={150}
+          style={styles.chimeLogo}
+        />
         <InputField
+          testID={`${RouteKeys.SIGN_IN}: emailInputField`}
           name={'email'}
           control={control}
           errors={errors}
@@ -90,6 +99,7 @@ export const SignInScreen = (props: StackScreenProps<RouteKeys.SIGN_IN>) => {
           returnKeyType={'next'}
         />
         <InputField
+          testID={`${RouteKeys.SIGN_IN}: passwordInputField`}
           name={'password'}
           control={control}
           errors={errors}
@@ -107,16 +117,20 @@ export const SignInScreen = (props: StackScreenProps<RouteKeys.SIGN_IN>) => {
           }
         />
         <Pressable
+          testID={`${RouteKeys.SIGN_IN}: help`}
           style={styles.needHelp}
           onPress={() => Alert.alert('Hang On', 'Help is coming!')}>
           <Text style={styles.needHelpText}>
             {Translations.signIn.helpButton}
           </Text>
         </Pressable>
-        <Text style={styles.smsAgreement}>
+        <Text
+          testID={`${RouteKeys.SIGN_IN}: smsAgreement`}
+          style={styles.smsAgreement}>
           {Translations.signIn.smsAgreement}
         </Text>
         <Button
+          testID={`${RouteKeys.SIGN_IN}: signInButton`}
           onPress={submit}
           mode={'contained'}
           buttonColor={Colors.primary}
@@ -126,8 +140,12 @@ export const SignInScreen = (props: StackScreenProps<RouteKeys.SIGN_IN>) => {
           {Translations.signIn.signInButton}
         </Button>
       </KeyboardAwareScrollView>
-      <LoadingState visible={isLoading} />
+      <LoadingState
+        visible={isLoading}
+        testID={`${RouteKeys.SIGN_IN}: loadingState`}
+      />
       <ErrorState
+        testID={`${RouteKeys.SIGN_IN}: errorState`}
         visible={errorMessage.length > 0}
         title={Translations.signIn.errorTitle}
         message={errorMessage}

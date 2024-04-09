@@ -7,6 +7,7 @@ import styles from './styles.ts';
 
 export const ErrorState = (props: ErrorStateType) => {
   const {
+    testID,
     visible = false,
     title,
     message,
@@ -15,7 +16,11 @@ export const ErrorState = (props: ErrorStateType) => {
   } = props;
 
   return (
-    <Modal visible={visible} dismissable={false} style={styles.modal}>
+    <Modal
+      testID={testID}
+      visible={visible}
+      dismissable={false}
+      style={styles.modal}>
       <View style={styles.background}>
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.message}>{message}</Text>

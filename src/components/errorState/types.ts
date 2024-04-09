@@ -4,4 +4,5 @@ export type ErrorStateType = {
   message: string;
   actionButtonOnPress: () => void;
   actionButtonText: string;
+  testID: string;
 };
